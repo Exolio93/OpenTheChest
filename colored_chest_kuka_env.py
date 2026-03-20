@@ -558,43 +558,28 @@ class ColoredChestKukaEnv(gym.Env):
         return np.concatenate([ee_pos, target_pos, target_one_hot, progress]).astype(np.float32)
 
     def _compute_reward_and_success(self):
-        """
-        Compute the scalar reward, success flag, and current target distance.
-
-        Returns
-        -------
-        tuple
-            A tuple ``(reward, success, distance)`` where:
-
-            - ``reward`` is the per-step scalar reward
-            - ``success`` indicates whether the success hold condition is met
-            - ``distance`` is the current Euclidean distance to the target
-        """
         distance = self._distance_to_target()
-        reward = -distance
+        
+        # 1. Base : Distance linéaire et Pénalité de temps
+        reward = -1.0 * distance - 0.1
+        
+        # 2. Le puits de potentiel (Guidage exponentiel)
+        reward += 2.0 * np.exp(-5.0 * distance)
 
-        if self.reward_type == "advanced":
-            shaping_radius = 0.20
-            if distance <= shaping_radius:
-                bonus_scale = 1.0 - (distance / shaping_radius)
-                reward += 10.0 * bonus_scale
-
-            current_target_pos = self._get_chest_top_center(self.chest_ids[self.target_idx])
-            chest_move_dist = float(np.linalg.norm(current_target_pos - self.prev_target_chest_pos))
-            if chest_move_dist > 1e-6:
-                reward -= 10.0 * chest_move_dist
-            self.prev_target_chest_pos = current_target_pos.copy()
-
+        # --- GESTION DU SUCCÈS (Condition d'arrêt) ---
         if distance < self.success_distance:
             self.consecutive_close_steps += 1
         else:
             self.consecutive_close_steps = 0
 
         success = self.consecutive_close_steps >= self.success_hold_steps
+        
+        # 3. Le bonus terminal massif pour forcer l'arrêt
         if success:
-            reward += 20.0
+            reward += 1000.0
 
         return float(reward), bool(success), float(distance)
+        
 
     def step(self, action: np.ndarray):
         """
