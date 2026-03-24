@@ -9,6 +9,8 @@ numpy
 matplotlib
 pandas
 tqdm
+sb3-contrib
+
 
 # La bibliothèque spécifique au projet (directement depuis GitHub)
 git+https://github.com/ThalesGroup/open-the-chests.git@0.7.5
