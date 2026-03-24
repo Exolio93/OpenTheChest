@@ -1,0 +1,15 @@
+# Core RL & Simulation
+gymnasium==0.28.1
+pybullet
+stable-baselines3[extra]
+shimmy>=0.2.1
+
+# Tools
+numpy
+matplotlib
+pandas
+tqdm
+sb3-contrib
+
+# La bibliothèque spécifique au projet (directement depuis GitHub)
+git+https://github.com/ThalesGroup/open-the-chests.git@0.7.5
