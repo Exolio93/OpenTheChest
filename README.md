@@ -26,18 +26,19 @@ python -m ipykernel install --user --name openthechest --display-name "Python (O
 Le projet est organise autour des elements suivants :
 
 - `Open_The_Chests_Project.ipynb` : 
-Notebook principal pour travailler et faire le code : c'est ici où il y a toutes les consignes etc. Il y a 3 parties (3 taches), j'ai fait la première. Les consignes sont assez abstraites, c'est un projet assez ouvert visiblement.  
+Notebook principal pour travailler et faire le code : c'est ici où il y a toutes les consignes etc. Il y a 3 parties (3 taches).
 - `report.ipynb` : 
-C'est le rapport à rendre.
+Rapport de notre travail.
 - `colored_chest_kuka_env.py` : 
-Fichier qui était fourni avec le TP, normalement on est pas sensé trop le toucher car tout ce passe sur le notebook (sauf exceptions)
 - `register_envs.py` : 
-Fichier qui était fourni avec le TP, normalement on est pas sensé trop le toucher car tout ce passe sur le notebook (sauf exceptions)
+Fichiers d'utils
 - `requirements.txt` :
 Liste des dependances Python.
 - `logs/` :
-logs d'entrainements pour plot la learning curve (ils devraient plus servir mais ne supprimer pas au cas ou on sait jamais)
+logs d'entrainements pour plot la learning curve.
 - `assets_task_1/` : 
-Les fichiers (images / vidéo) que j'avais besoin d'enregisrer pour le rapport pour la partie 1. Vous pourrez créer assets_task_2 et _3 si il faut ajouter des images
+Les fichiers (images / vidéo) correspondants à la partie 1.
+- `assets_task_3/` : 
+Les fichiers (images / vidéo) correspondants à la partie 3.
 - `*.zip` : 
 Modèles entrainé qui peuvent être chargé depuis le code si nécessaire.
